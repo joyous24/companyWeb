@@ -8,12 +8,12 @@
 
 	<http auto-config="true" use-expressions="false">
 		<intercept-url pattern="/**" access="ROLE_USER" />
-		<form-login login-page="/jsp/mcp/admin/login/login.jsp" 
+		<form-login login-page="/jsp/mcp/admin/login.jsp" 
 					login-processing-url="/login" 
 					username-parameter="username" 
 					password-parameter="password" 
-					default-target-url="/jsp/mcp/admin/login/home.jsp" 
-					authentication-failure-url="/jsp/mcp/admin/login/loginFail.jsp"
+					default-target-url="/jsp/mcp/admin/home.jsp" 
+					authentication-failure-url="/jsp/mcp/admin/loginFail.jsp"
 					always-use-default-target="true" />
 		<logout />
 		<!-- csrf攻击防御 -->

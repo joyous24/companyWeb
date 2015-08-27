@@ -206,7 +206,7 @@ Ext.onReady(function() {
 	function treeItemClick(record) {
 		if (record.get('leaf')) {
 			var id = record.get('id');
-			addTab(id, record.get('text'), "../"+id + ".jsp", record.get('iconCls'));
+			addTab(id, record.get('text'), id + ".jsp", record.get('iconCls'));
 		}
 	}
 	

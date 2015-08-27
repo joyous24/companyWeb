@@ -6,6 +6,7 @@
 		<artifactId>liferay-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+
 	<groupId>com.liferay.parent</groupId>
 	<artifactId>liferay-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -21,7 +22,7 @@
 	<dependencies>
 		<!-- 多模块依赖 -->
 		<dependency>
-			<groupId>${project.groupId}</groupId>
+			<groupId>com.liferay.modules</groupId>
 			<artifactId>liferay-admin</artifactId>
 			<version>${project.version}</version>
 		</dependency>

@@ -1,21 +1,22 @@
 package com.liferay.admin.vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class OrganizationVO {
-	private String organizationId;
+	private int organizationId;
 	private String organizationName;
 	private Date createTime;
 	private String description;
-	private int rgt;
-	private int lft;
-	private int depth;
+	private String parentId;
+	private boolean leaf;
+	private List<OrganizationVO> children;
 
-	public String getOrganizationId() {
+	public int getOrganizationId() {
 		return organizationId;
 	}
 
-	public void setOrganizationId(String organizationId) {
+	public void setOrganizationId(int organizationId) {
 		this.organizationId = organizationId;
 	}
 
@@ -43,28 +44,28 @@ public class OrganizationVO {
 		this.description = description;
 	}
 
-	public int getRgt() {
-		return rgt;
+	public String getParentId() {
+		return parentId;
 	}
 
-	public void setRgt(int rgt) {
-		this.rgt = rgt;
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
 	}
 
-	public int getLft() {
-		return lft;
+	public boolean isLeaf() {
+		return leaf;
 	}
 
-	public void setLft(int lft) {
-		this.lft = lft;
+	public void setLeaf(boolean leaf) {
+		this.leaf = leaf;
 	}
 
-	public int getDepth() {
-		return depth;
+	public List<OrganizationVO> getChildren() {
+		return children;
 	}
 
-	public void setDepth(int depth) {
-		this.depth = depth;
+	public void setChildren(List<OrganizationVO> children) {
+		this.children = children;
 	}
 
 }

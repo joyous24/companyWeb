@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>组织机构</title>
-<script type="text/javascript" src="<%=basePath%>jsp/mcp/admin/js/organization.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/mcp/admin/organization.js"></script>
 </head>
 <body>
 </body>

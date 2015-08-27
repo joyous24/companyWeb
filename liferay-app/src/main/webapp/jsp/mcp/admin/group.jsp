@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>组管理</title>
-<script type="text/javascript" src="js/group.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/mcp/admin/group.js"></script>
 </head>
 <body>
 </body>

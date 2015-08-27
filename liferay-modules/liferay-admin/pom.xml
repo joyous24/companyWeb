@@ -8,11 +8,11 @@
 		<artifactId>liferay-modules</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	
 	<groupId>com.liferay.modules</groupId>
 	<artifactId>liferay-admin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>liferay-admin</name>
-	<url>http://maven.apache.org</url>
+	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>

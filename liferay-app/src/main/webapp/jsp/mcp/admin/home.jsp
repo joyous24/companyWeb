@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>欢迎登陆权限管理系统</title>
 <script type="text/javascript" src="<%=basePath%>jsframe/ext-4.2/ux/TabCloseMenu.js"></script>
-<script type="text/javascript" src="<%=basePath%>jsp/mcp/admin/login/js/home.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/mcp/admin/home.js"></script>
 </head>
 <body>
 </body>

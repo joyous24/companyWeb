@@ -31,23 +31,18 @@ public class OrganizationController {
 	 * 
 	 * @param organization
 	 * @param model
-	 * @throws InvocationTargetException 
-	 * @throws IllegalArgumentException 
-	 * @throws IllegalAccessException 
-	 * @throws SecurityException 
-	 * @throws NoSuchMethodException 
+	 * @throws InvocationTargetException
+	 * @throws IllegalArgumentException
+	 * @throws IllegalAccessException
+	 * @throws SecurityException
+	 * @throws NoSuchMethodException
 	 */
 	@RequestMapping(value = "/organizationTreeList", method = RequestMethod.POST)
 	@ResponseBody
-	public String organizationTreeList(OrganizationVO organization, ModelMap model) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		List<OrganizationVO> organizations = organizationService.getOrganizationList(organization);
-		OrganizationVO root = null;
-		for (Iterator<OrganizationVO> it = organizations.iterator(); it.hasNext();) {
-			OrganizationVO org = (OrganizationVO) it.next();
-			
-		}
+	public List<OrganizationVO> organizationTreeList(OrganizationVO organization, ModelMap model) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		List<OrganizationVO> organizationList = organizationService.getTreeMenuList(); 
 		
-		return root.toString();
+		System.out.println(organizationList.toString());
+		return organizationList;
 	}
-
 }

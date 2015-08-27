@@ -6,28 +6,18 @@
 		<result property="organizationName" column="ORGANIZATION_NAME" />
 		<result property="createTime" column="CREATE_TIME" />
 		<result property="description" column="DESCRIPTION" />
-		<result property="rgt" column="RGT" />
-		<result property="lft" column="LFT" />
-		<result property="depth" column="DEPTH" />
+		<result property="parentId" column="PARENTID" />
 	</resultMap>
-	<select id="getOrganizationList" parameterType="com.liferay.admin.vo.OrganizationVO"
+	<select id="getParentMenuList" parameterType="com.liferay.admin.vo.OrganizationVO"
 		resultMap="Organization-Result">
-		/** OrganizationDao.getOrganizationList **/
-		SELECT
-			node.*,
-			(
-				COUNT(parent.ORGANIZATION_NAME) - 1
-			) AS DEPTH
-		FROM
-			sys_organization AS node,
-			sys_organization AS parent
-		WHERE
-			node.lft BETWEEN parent.lft
-		AND parent.rgt
-		GROUP BY
-			node.ORGANIZATION_NAME
-		ORDER BY
-			node.lft;
+		/** OrganizationDao.getParentMenuList **/
+		select * from sys_organization where parentid = 0;
+	</select>
+	
+	<select id="getChildMenuList" parameterType="java.lang.Integer"
+		resultMap="Organization-Result">
+		/** OrganizationDao.getChildMenuList **/
+		select * from sys_organization where parentid = #{menuId};
 	</select>
 
 </mapper>
