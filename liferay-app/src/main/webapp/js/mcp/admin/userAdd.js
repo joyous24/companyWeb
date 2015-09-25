@@ -5,61 +5,118 @@
  * @data 2015-09-24
  */
 Ext.define('user.window.userAdd', {
-			extend : 'Ext.container.Container',
-			requires : ['Ext.Window', 'Ext.form.Panel'],
-			// 构造
-			constructor : function(config) {
-				this.user_window = null;
-				this.init();
-			},
-			// 初始化
-			init : function() {
-				var form = Ext.create('Ext.form.Panel', {
-							bodyPadding: 10,
-							fieldDefaults : {
-								msgTarget : 'side'
-							},
-							defaults : {
-								border : false,
-								xtype : 'panel',
-								flex : 1,
-								layout : 'anchor'
-							},
-							layout : 'hbox',
-							items : []
-						});
+			extend : 'Ext.window.Window',
 
-				// windows
-				this.user_window = Ext.create('Ext.Window', {
-							title : '新增用户',
-							animCollapse : true,
-							maximizable : true,
-							modal : true,
-							width : 750,
-							height : 500,
-							minWidth : 300,
-							minHeight : 200,
-							layout : 'fit',
-							items : form,
+			requires : ['Ext.form.Panel', 'Ext.form.field.ComboBox',
+					'Ext.toolbar.Toolbar', 'Ext.button.Button',
+					'Ext.form.field.TextArea'],
+
+			autoShow : true,
+			height : 320,
+			width : 714,
+			closeAction : 'hide',
+			resizable : false,
+			animCollapse : true,
+			title : '新增用户',
+			maximizable : true,
+			modal : true,
+			iconCls : 'form_add',
+			layout : {
+				type : 'vbox',
+				align : 'stretch'
+			},
+
+			initComponent : function() {
+				var me = this;
+
+				Ext.applyIf(me, {
+							defaults : {
+								border : false
+							},
+							items : [{
+										xtype : 'form',
+										layout : {
+											type : 'hbox',
+											align : 'stretch'
+										},
+										defaults : {
+											border : false
+										},
+										items : [{
+													xtype : 'form',
+													flex : 1,
+													bodyPadding : 10,
+													items : [{
+																xtype : 'textfield',
+																anchor : '100%',
+																fieldLabel : '账户'
+															}, {
+																xtype : 'textfield',
+																anchor : '100%',
+																fieldLabel : '手机号'
+															}, {
+																xtype : 'combobox',
+																anchor : '100%',
+																fieldLabel : '状态'
+															}, {
+																xtype : 'combobox',
+																anchor : '100%',
+																fieldLabel : '用户角色'
+															}]
+												}, {
+													xtype : 'form',
+													flex : 1,
+													bodyPadding : 10,
+													items : [{
+																xtype : 'textfield',
+																anchor : '100%',
+																fieldLabel : '姓名'
+															}, {
+																xtype : 'textfield',
+																anchor : '100%',
+																fieldLabel : '邮箱',
+																vtype : 'email'
+															}, {
+																xtype : 'combobox',
+																anchor : '100%',
+																fieldLabel : '组织机构'
+															}, {
+																xtype : 'combobox',
+																anchor : '100%',
+																fieldLabel : '分组'
+															}]
+												}]
+									}, {
+										xtype : 'form',
+										flex : 1,
+										bodyPadding : 10,
+										title : '',
+										items : [{
+													xtype : 'textareafield',
+													anchor : '100%',
+													fieldLabel : '描述'
+												}]
+									}],
 							dockedItems : [{
 										xtype : 'toolbar',
+										flex : 1,
 										dock : 'bottom',
 										ui : 'footer',
 										layout : {
+											type : 'hbox',
 											pack : 'center'
 										},
 										items : [{
-													minWidth : 80,
+													xtype : 'button',
 													text : '保存'
 												}, {
-													minWidth : 80,
-													text : '取消'
+													xtype : 'button',
+													text : '重置'
 												}]
 									}]
 						});
-			},
-			show : function() {
-				this.user_window.show();
+
+				me.callParent(arguments);
 			}
 
 		});

@@ -21,7 +21,7 @@ Ext.onReady(function() {
 						valueField : 'value',
 						editable : false,
 						width : 150,
-						labelWidth : 30,
+						labelWidth : 40,
 						emptyText : '全部'
 					});
 
@@ -150,11 +150,11 @@ Ext.onReady(function() {
 								}, '->', {
 									xtype : 'textfield',
 									fieldLabel : '账户',
-									labelWidth : 30
+									labelWidth : 40
 								}, '-', {
 									xtype : 'textfield',
 									fieldLabel : '姓名',
-									labelWidth : 30
+									labelWidth : 40
 								}, '-', stateComboBox, {
 									xtype : 'button',
 									text : '查询',
