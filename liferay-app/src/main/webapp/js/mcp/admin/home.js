@@ -8,10 +8,12 @@ Ext.require(['Ext.tab.Panel', 'Ext.data.TreeStore', 'Ext.tree.Panel',
 		'Ext.Viewport', 'Ext.Component']);
 Ext.onReady(function() {
 	Ext.QuickTips.init();
-	//界面渲染等待加载组件
-	var loadMask = new Ext.LoadMask(Ext.getBody(), {msg:"加载中..."});	
+	// 界面渲染等待加载组件
+	var loadMask = new Ext.LoadMask(Ext.getBody(), {
+				msg : "加载中..."
+			});
 	loadMask.show();
-	
+
 	// --------------------中间面板 Tab 选项卡------------------------
 	var tabPanel = Ext.create('Ext.tab.Panel', {
 				deferredRender : false,
@@ -92,11 +94,6 @@ Ext.onReady(function() {
 								id : 'authorities',
 								leaf : true,
 								iconCls : 'sys_authorities'
-							}, {
-								text : "菜单导航",
-								id : 'menu',
-								leaf : true,
-								iconCls : 'sys_menu'
 							}, {
 								text : "数据字典",
 								id : 'dictionary',
@@ -209,8 +206,8 @@ Ext.onReady(function() {
 			addTab(id, record.get('text'), id + ".jsp", record.get('iconCls'));
 		}
 	}
-	
-	//加载完毕注销加载组件
-	loadMask.hide();	
+
+	// 加载完毕注销加载组件
+	loadMask.hide();
 	loadMask.disable();
 });

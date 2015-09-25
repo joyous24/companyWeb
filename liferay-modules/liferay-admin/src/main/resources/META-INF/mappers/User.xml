@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liferay.admin.dao.UserDao">
+	<resultMap id="Uer-Result" type="com.liferay.admin.vo.UserVO">
+		<result property="userId" column="USER_ID" />
+		<result property="organizationId" column="ORGANIZATION_ID" />
+		<result property="userAccount" column="USER_ACCOUNT" />
+		<result property="userName" column="USER_NAME" />
+		<result property="userPassword" column="USER_PASSWORD" />
+		<result property="mobile" column="MOBILE" />
+		<result property="email" column="EMAIL" />
+		<result property="state" column="STATE" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="loginTime" column="LOGIN_TIME" />
+		<result property="lastLoginTime" column="LAST_LOGIN_TIME" />
+		<result property="loginCout" column="LOGIN_COUNT" />
+		<result property="userDescription" column="USER_DESCRIPTION" />
+		<result property="roleName" column="ROLE_NAME" />
+		<result property="organizationName" column="ORGANIZATION_NAME" />
+		<result property="groupName" column="GROUP_NAME" />
+	</resultMap>
+
+	<sql id="userWithCondition-SQL">
+		SELECT * FROM sys_users
+	</sql>
+
+	<select id="getUserList" parameterType="com.liferay.admin.vo.UserVO" resultMap="Uer-Result">
+		/** User.getUserList**/
+		<include refid="userWithCondition-SQL"></include>
+		limit #{start},#{limit}
+
+	</select>
+
+	<select id="getUserCount" parameterType="com.liferay.admin.vo.UserVO" resultType="Integer">
+		/** User.getUserCount**/
+		SELECT count(*)
+		FROM (
+		<include refid="userWithCondition-SQL" />
+		)x
+	</select>
+
+
+</mapper>

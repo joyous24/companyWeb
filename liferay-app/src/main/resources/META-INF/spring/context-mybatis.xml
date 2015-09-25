@@ -11,7 +11,12 @@
 	<!-- mybatis 配置 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath*:META-INF/mappers/**/*.xml" />
+		<property name="mapperLocations" >
+	    	<array>
+	    		<value>classpath*:/META-INF/mappers/*.xml</value>
+	    		<value>classpath*:/META-INF/mappers/${database.name}/*.xml</value>
+	    	</array>
+	    </property>
 	</bean>
 
 	<!-- 扫描basePackage包下的所有接口 -->

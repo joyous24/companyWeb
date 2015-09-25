@@ -47,21 +47,17 @@ Ext.onReady(function() {
 								}],
 						tbar : [{
 									xtype : 'button',
-									text : '新增',
+									text : '新增角色',
+									iconCls : 'form_add'
+								}, '-',{
+									xtype : 'button',
+									text : '分配授权',
 									iconCls : 'form_add'
 								}, '-', {
 									xtype : 'button',
-									text : '编辑',
+									text : '分配缺省权限',
 									iconCls : 'form_edit'
-								}, '-', {
-									xtype : 'button',
-									text : '删除',
-									iconCls : 'form_delete'
-								}, '-', {
-									xtype : 'button',
-									text : '授权',
-									iconCls : 'form_delete'
-								}, '->', {
+								},'->', {
 									xtype : 'textfield',
 									fieldLabel : '角色名称',
 									labelWidth : 60

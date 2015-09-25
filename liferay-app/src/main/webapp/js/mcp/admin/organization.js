@@ -34,12 +34,12 @@ Ext.onReady(function() {
 						defaults : {
 							autoScroll : true
 						},
-						/*selModel : Ext.create('Ext.selection.CheckboxModel', {
+						selModel : Ext.create('Ext.selection.CheckboxModel', {
 									mode : "SIMPLE"
-								}),*/
+								}),
 						columns : [/*{
 									xtype : "rownumberer"
-								}, */{
+								},*/{
 									xtype : 'treecolumn',
 									text : '组织名称',
 									dataIndex : 'organizationName',
@@ -58,15 +58,15 @@ Ext.onReady(function() {
 								}],
 						tbar : [{
 									xtype : 'button',
-									text : '新增',
+									text : '新增组织',
 									iconCls : 'form_add'
 								}, '-', {
 									xtype : 'button',
-									text : '编辑',
+									text : '编辑组织',
 									iconCls : 'form_edit'
 								}, '-', {
 									xtype : 'button',
-									text : '删除',
+									text : '删除组织',
 									iconCls : 'form_delete'
 								}, '->', {
 									xtype : 'textfield',
@@ -82,6 +82,9 @@ Ext.onReady(function() {
 			// --------------------布局界面------------------------
 			var viewport = Ext.create('Ext.Viewport', {
 						layout : "fit",
+						defaults : {
+							border : false
+						},
 						items : grid
 					});
 

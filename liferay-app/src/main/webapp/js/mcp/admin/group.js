@@ -7,33 +7,6 @@
 Ext.require(['Ext.Viewport', 'Ext.data.Store', 'Ext.grid.Panel',
 		'Ext.ux.ProgressBarPager', 'Ext.form.ComboBox']);
 Ext.onReady(function() {
-			// --------------------机构部门树------------------------
-			var organizationStore = Ext.create('Ext.data.TreeStore', {
-						proxy : {
-							type : 'ajax',
-							url : '/json/user_tree_grid.json'
-						}
-					});
-
-			var organizationTree = Ext.create('Ext.tree.Panel', {
-						useArrows : true,
-						colspan : 2,
-						store : organizationStore,
-						rootVisible : false,
-						border : false,
-						title : '机构部门',
-						iconCls : 'sys_organization',
-						tbar : [{
-									xtype : 'button',
-									text : '保存分组',
-									iconCls : 'form_save'
-								}]
-					});
-
-			organizationTree.on('itemclick', function(me, record, item, index,
-							e, eOpts) {
-					});
-
 			// --------------------表格展示列表------------------------
 			var store = Ext.create('Ext.data.Store', {
 						fields : ['', '', ''],
@@ -66,28 +39,30 @@ Ext.onReady(function() {
 									dataIndex : '',
 									width : 150,
 									align : 'center'
+								}, {
+									text : '描述',
+									dataIndex : '',
+									width : 150,
+									align : 'center'
+								}, {
+									text : '操作',
+									dataIndex : '',
+									width : 150,
+									align : 'center'
 								}],
 						tbar : [{
 									xtype : 'button',
-									text : '新增',
+									text : '新增组',
 									iconCls : 'form_add'
 								}, '-', {
 									xtype : 'button',
-									text : '编辑',
+									text : '加入用户',
 									iconCls : 'form_edit'
 								}, '-', {
 									xtype : 'button',
-									text : '删除',
+									text : '指定组角色',
 									iconCls : 'form_delete'
-								}, '-', {
-									xtype : 'button',
-									text : '组角色',
-									iconCls : 'form_details'
-								}, '-', {
-									xtype : 'button',
-									text : '组授权',
-									iconCls : 'form_details'
-								}, '->', {
+								},'->', {
 									xtype : 'textfield',
 									fieldLabel : '组名称',
 									labelWidth : 60
@@ -107,19 +82,8 @@ Ext.onReady(function() {
 
 			// --------------------布局界面------------------------
 			var viewport = Ext.create('Ext.Viewport', {
-						layout : "border",
-						defaults : {
-							border : false,
-							layout : 'fit'
-						},
-						items : [{
-									region : 'center',
-									items : grid
-								}, {
-									region : 'east',
-									width : 200,
-									items : organizationTree
-								}]
+						layout : "fit",
+						items : [grid]
 					});
 
 		});

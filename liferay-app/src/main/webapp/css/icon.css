@@ -74,3 +74,7 @@
 .form_save {
 	background-image: url(/images/form_save.png) !important;
 }
+
+.form_user_key {
+	background-image: url(/images/sys_user_key.png) !important;
+}

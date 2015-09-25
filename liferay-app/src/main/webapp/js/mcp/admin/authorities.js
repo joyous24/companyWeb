@@ -4,22 +4,28 @@
  * @author zxq
  * @data 2015-07-01
  */
-Ext.require(['Ext.Viewport', 'Ext.data.Store', 'Ext.grid.Panel',
+Ext.require(['Ext.Viewport', 'Ext.data.TreeStore', 'Ext.tree.Panel',
 		'Ext.ux.ProgressBarPager', 'Ext.form.ComboBox']);
 Ext.onReady(function() {
 			// --------------------表格展示列表------------------------
-			var store = Ext.create('Ext.data.Store', {
+			var store = Ext.create('Ext.data.TreeStore', {
+						folderSort : true,
 						fields : ['', '', ''],
 						proxy : {
-							type : 'memory',
+							type : 'ajax',
+							//url : '/admin/organization/organizationTreeList.json',
 							reader : {
-								type : 'json',
-								root : 'items'
+								type : 'json'
+							},
+							actionMethods : {
+								read : 'POST'
 							}
+							
 						}
 					});
 
-			var grid = Ext.create('Ext.grid.Panel', {
+			var grid = Ext.create('Ext.tree.Panel', {
+						//rootVisible : false,
 						store : store,
 						defaults : {
 							autoScroll : true
@@ -27,9 +33,9 @@ Ext.onReady(function() {
 						selModel : Ext.create('Ext.selection.CheckboxModel', {
 									mode : "SIMPLE"
 								}),
-						columns : [{
+						columns : [/*{
 									xtype : "rownumberer"
-								},  {
+								},*/{
 									text : '权限名称',
 									dataIndex : '',
 									width : 150,
@@ -42,15 +48,15 @@ Ext.onReady(function() {
 								}],
 						tbar : [{
 									xtype : 'button',
-									text : '新增',
+									text : '新增权限',
 									iconCls : 'form_add'
 								}, '-', {
 									xtype : 'button',
-									text : '编辑',
+									text : '编辑权限',
 									iconCls : 'form_edit'
 								}, '-', {
 									xtype : 'button',
-									text : '删除',
+									text : '删除权限',
 									iconCls : 'form_delete'
 								}, '->', {
 									xtype : 'textfield',
@@ -60,14 +66,7 @@ Ext.onReady(function() {
 									xtype : 'button',
 									text : '查询',
 									iconCls : 'form_query'
-								}],
-						bbar : {
-							xtype : 'pagingtoolbar',
-							pageSize : 10,
-							store : store,
-							displayInfo : true,
-							plugins : new Ext.ux.ProgressBarPager()
-						}
+								}]
 					});
 
 			// --------------------布局界面------------------------
