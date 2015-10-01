@@ -29,6 +29,16 @@ Ext.define('user.window.userAdd', {
 			initComponent : function() {
 				var me = this;
 
+				var organization_comboBox = Ext.create("Ext.ux.comboboxtree", {
+							storeUrl : '/admin/organization/organizationTreeAllList.json',
+							cascade : 'child',// 级联方式:1.child子级联;2.parent,父级联,3,both全部级联
+							checkModel : 'single',// 当json数据为不带checked的数据时只配置为single,带checked配置为double为单选,不配置为多选
+							fieldLabel : '组织机构',
+							anchor : '100%',
+							rootId : 'organizationId',
+							rootText : 'organizationName'
+						});
+
 				Ext.applyIf(me, {
 							defaults : {
 								border : false
@@ -76,11 +86,11 @@ Ext.define('user.window.userAdd', {
 																anchor : '100%',
 																fieldLabel : '邮箱',
 																vtype : 'email'
-															}, {
+															},organization_comboBox /*{
 																xtype : 'combobox',
 																anchor : '100%',
 																fieldLabel : '组织机构'
-															}, {
+															}*/, {
 																xtype : 'combobox',
 																anchor : '100%',
 																fieldLabel : '分组'

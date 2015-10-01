@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liferay.admin.dao.GroupDao">
+	<resultMap id="group-Result" type="com.liferay.admin.vo.GroupVO">
+		<result property="groupId" column="GROUP_ID" />
+		<result property="groupName" column="GROUP_NAME" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="groupDescription" column="GROUP_DESCRIPTION" />
+	</resultMap>
+
+	<sql id="groupWithCondition-SQL">
+		SELECT * FROM sys_group
+	</sql>
+
+	<select id="getGroupList" parameterType="com.liferay.admin.vo.GroupVO" resultMap="group-Result">
+		/** User.getGroupList**/
+		<include refid="groupWithCondition-SQL"></include>
+		limit #{start},#{limit}
+
+	</select>
+
+	<select id="getGroupCount" parameterType="com.liferay.admin.vo.GroupVO" resultType="Integer">
+		/** User.getGroupCount**/
+		SELECT count(*)
+		FROM (
+		<include refid="groupWithCondition-SQL" />
+		)x
+	</select>
+
+
+</mapper>

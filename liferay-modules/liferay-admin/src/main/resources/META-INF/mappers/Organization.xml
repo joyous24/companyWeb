@@ -8,14 +8,28 @@
 		<result property="description" column="DESCRIPTION" />
 		<result property="parentId" column="PARENTID" />
 	</resultMap>
-	<select id="getParentMenuList" parameterType="com.liferay.admin.vo.OrganizationVO"
-		resultMap="Organization-Result">
+	
+	<resultMap id="OrganizationTree-Result" type="com.liferay.admin.vo.OrganizationTreeVO">
+		<result property="id" column="ORGANIZATION_ID" />
+		<result property="text" column="ORGANIZATION_NAME" />
+	</resultMap>
+	
+	<select id="getParentMenuList" parameterType="com.liferay.admin.vo.OrganizationVO" resultMap="Organization-Result">
 		/** OrganizationDao.getParentMenuList **/
 		select * from sys_organization where parentid = 0;
 	</select>
+
+	<select id="getChildMenuList" parameterType="java.lang.Integer" resultMap="Organization-Result">
+		/** OrganizationDao.getChildMenuList **/
+		select * from sys_organization where parentid = #{menuId};
+	</select>
 	
-	<select id="getChildMenuList" parameterType="java.lang.Integer"
-		resultMap="Organization-Result">
+	<select id="getParentMenuAllList" resultMap="OrganizationTree-Result">
+		/** OrganizationDao.getParentMenuTreeList **/
+		select * from sys_organization where parentid = 0;
+	</select>
+	
+	<select id="getChildMenuAllList" parameterType="java.lang.Integer" resultMap="OrganizationTree-Result">
 		/** OrganizationDao.getChildMenuList **/
 		select * from sys_organization where parentid = #{menuId};
 	</select>

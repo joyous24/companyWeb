@@ -4,10 +4,10 @@
  * @author zxq
  * @data 2015-06-29
  */
-Ext.require(['Ext.Viewport', 'Ext.data.Store',
-		'Ext.tree.Panel', 'Ext.form.ComboBox']);
+Ext.require(['Ext.Viewport', 'Ext.data.Store', 'Ext.tree.Panel',
+		'Ext.form.ComboBox']);
 Ext.onReady(function() {
-			var itemsPerPage = 1;   // 设置你想要的每页显示条数
+			var itemsPerPage = 10; // 设置你想要的每页显示条数
 			// --------------------状态下拉框------------------------
 			var stateStore = Ext.create('Ext.data.Store', {
 						fields : ['value', 'name'],
@@ -31,14 +31,14 @@ Ext.onReady(function() {
 								'state', 'organizationName', 'roleName',
 								'groupName', 'createTime', 'loginTime',
 								'lastLoginTime', 'loginCount'],
-						pageSize: itemsPerPage,
+						pageSize : itemsPerPage,
 						proxy : {
 							type : 'ajax',
 							url : '/admin/user/userList.data?content=json',
 							reader : {
 								type : 'json',
-								root: 'rows',
-            					totalProperty: 'totalCount'
+								root : 'rows',
+								totalProperty : 'totalCount'
 							},
 							actionMethods : {
 								read : 'POST'
@@ -51,7 +51,7 @@ Ext.onReady(function() {
 							limit : itemsPerPage
 						}
 					});
-			
+
 			var userAddWindow = null;
 			var grid = Ext.create('Ext.grid.Panel', {
 						useArrows : true,
@@ -63,6 +63,8 @@ Ext.onReady(function() {
 							autoScroll : true
 						},
 						columns : [{
+									xtype : "rownumberer"
+								}, {
 									text : '账户',
 									dataIndex : 'userAccount',
 									width : 150,
@@ -137,8 +139,8 @@ Ext.onReady(function() {
 									xtype : 'button',
 									text : '新增用户',
 									iconCls : 'form_add',
-									handler : function(){
-										if(userAddWindow == null){
+									handler : function() {
+										if (userAddWindow == null) {
 											userAddWindow = new user.window.userAdd();
 										}
 										userAddWindow.show();
@@ -163,7 +165,7 @@ Ext.onReady(function() {
 						bbar : {
 							xtype : 'pagingtoolbar',
 							store : store,
-							dock: 'bottom',
+							dock : 'bottom',
 							displayInfo : true,
 							plugins : new Ext.ux.ProgressBarPager()
 						}

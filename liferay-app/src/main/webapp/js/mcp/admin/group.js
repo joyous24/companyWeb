@@ -7,46 +7,61 @@
 Ext.require(['Ext.Viewport', 'Ext.data.Store', 'Ext.grid.Panel',
 		'Ext.ux.ProgressBarPager', 'Ext.form.ComboBox']);
 Ext.onReady(function() {
+			var itemsPerPage = 10; // 设置你想要的每页显示条数
 			// --------------------表格展示列表------------------------
 			var store = Ext.create('Ext.data.Store', {
-						fields : ['', '', ''],
+						fields : ['groupId', 'groupName', 'createTime',
+								'groupDescription'],
+						pageSize : itemsPerPage,
 						proxy : {
-							type : 'memory',
+							type : 'ajax',
+							url : '/admin/group/groupList.data?content=json',
 							reader : {
 								type : 'json',
-								root : 'items'
+								root : 'rows',
+								totalProperty : 'totalCount'
+							},
+							actionMethods : {
+								read : 'POST'
 							}
 						}
 					});
 
+			store.load({
+						params : {
+							start : 0,
+							limit : itemsPerPage
+						}
+					});
 			var grid = Ext.create('Ext.grid.Panel', {
+						useArrows : true,
+						rootVisible : false,
+						multiSelect : true,
+						singleExpand : true,
 						store : store,
 						defaults : {
 							autoScroll : true
 						},
-						selModel : Ext.create('Ext.selection.CheckboxModel', {
-									mode : "SIMPLE"
-								}),
 						columns : [{
 									xtype : "rownumberer"
 								}, {
 									text : '组名称',
-									dataIndex : '',
+									dataIndex : 'groupName',
 									width : 150,
 									align : 'center'
 								}, {
 									text : '创建时间',
-									dataIndex : '',
+									dataIndex : 'createTime',
 									width : 150,
 									align : 'center'
 								}, {
 									text : '描述',
-									dataIndex : '',
+									dataIndex : 'groupDescription',
 									width : 150,
 									align : 'center'
 								}, {
 									text : '操作',
-									dataIndex : '',
+									dataIndex : 'operation',
 									width : 150,
 									align : 'center'
 								}],
@@ -62,7 +77,7 @@ Ext.onReady(function() {
 									xtype : 'button',
 									text : '指定组角色',
 									iconCls : 'form_delete'
-								},'->', {
+								}, '->', {
 									xtype : 'textfield',
 									fieldLabel : '组名称',
 									labelWidth : 60
@@ -73,8 +88,8 @@ Ext.onReady(function() {
 								}],
 						bbar : {
 							xtype : 'pagingtoolbar',
-							pageSize : 10,
 							store : store,
+							dock : 'bottom',
 							displayInfo : true,
 							plugins : new Ext.ux.ProgressBarPager()
 						}

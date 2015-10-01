@@ -6,6 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>用户管理</title>
+<script type="text/javascript" src="<%=basePath%>js/mcp/common/comboBoxTree.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/mcp/admin/userAdd.js"></script>
 <script type="text/javascript" src="<%=basePath%>js/mcp/admin/user.js"></script>
 </head>
