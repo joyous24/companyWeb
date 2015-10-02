@@ -7,18 +7,31 @@
 Ext.require(['Ext.Viewport', 'Ext.data.Store', 'Ext.grid.Panel',
 		'Ext.ux.ProgressBarPager', 'Ext.form.ComboBox']);
 Ext.onReady(function() {
+			var itemsPerPage = 10; // 设置你想要的每页显示条数
 			// --------------------表格展示列表------------------------
 			var store = Ext.create('Ext.data.Store', {
-						fields : ['', '', ''],
+						fields : ['roleCode', 'roleName', 'createTime',
+								'roleDescription'],
+						pageSize : itemsPerPage,
 						proxy : {
-							type : 'memory',
+							type : 'ajax',
+							url : '/admin/roles/rolesList.data?content=json',
 							reader : {
 								type : 'json',
-								root : 'items'
+								root : 'rows',
+								totalProperty : 'totalCount'
+							},
+							actionMethods : {
+								read : 'POST'
 							}
 						}
 					});
-
+			store.load({
+						params : {
+							start : 0,
+							limit : itemsPerPage
+						}
+					});
 			var grid = Ext.create('Ext.grid.Panel', {
 						store : store,
 						defaults : {
@@ -31,17 +44,22 @@ Ext.onReady(function() {
 									xtype : "rownumberer"
 								}, {
 									text : '角色代码',
-									dataIndex : '',
+									dataIndex : 'roleCode',
 									width : 150,
 									align : 'center'
 								}, {
 									text : '角色名称',
-									dataIndex : '',
+									dataIndex : 'roleName',
 									width : 150,
 									align : 'center'
 								}, {
 									text : '创建时间',
-									dataIndex : '',
+									dataIndex : 'createTime',
+									width : 150,
+									align : 'center'
+								}, {
+									text : '描述',
+									dataIndex : 'roleDescription',
 									width : 150,
 									align : 'center'
 								}],
@@ -49,7 +67,7 @@ Ext.onReady(function() {
 									xtype : 'button',
 									text : '新增角色',
 									iconCls : 'form_add'
-								}, '-',{
+								}, '-', {
 									xtype : 'button',
 									text : '分配授权',
 									iconCls : 'form_add'
@@ -57,7 +75,7 @@ Ext.onReady(function() {
 									xtype : 'button',
 									text : '分配缺省权限',
 									iconCls : 'form_edit'
-								},'->', {
+								}, '->', {
 									xtype : 'textfield',
 									fieldLabel : '角色名称',
 									labelWidth : 60

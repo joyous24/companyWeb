@@ -2,6 +2,8 @@ package com.liferay.admin.vo;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 public class UserVO extends ListPagingVO {
 	private int userId;
 	private int organizationId;
@@ -11,6 +13,7 @@ public class UserVO extends ListPagingVO {
 	private String mobile;
 	private String email;
 	private String state;
+	//@XmlJavaTypeAdapter(value = DateAdapter.class, type = Date.class)
 	private Date createTime;
 	private Date loginTime;
 	private Date lastLoginTime;

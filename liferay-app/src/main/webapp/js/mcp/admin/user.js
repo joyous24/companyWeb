@@ -62,6 +62,19 @@ Ext.onReady(function() {
 						defaults : {
 							autoScroll : true
 						},
+						viewConfig : {
+							getRowClass : function(record, rowIndex, rowParams,
+									store) {
+								var stateId = record.get("state");
+								if (stateId == "3") {// 已删除 红色
+									return 'x-grid-record-red';
+								}
+								if (stateId == "5") {// 超级管理员 绿色
+									return 'x-grid-record-green';
+								}
+								return '';
+							}
+						},
 						columns : [{
 									xtype : "rownumberer"
 								}, {
@@ -88,21 +101,19 @@ Ext.onReady(function() {
 									text : '状态',
 									dataIndex : 'state',
 									width : 150,
-									align : 'center'
+									align : 'center',
+									renderer : user_state_data_fn
 								}, {
-									xtype : 'treecolumn',
 									text : '组织机构',
 									dataIndex : 'organizationName',
 									width : 150,
 									align : 'center'
 								}, {
-									xtype : 'treecolumn',
 									text : '用户角色',
 									dataIndex : 'roleName',
 									width : 150,
 									align : 'center'
 								}, {
-									xtype : 'treecolumn',
 									text : '分组',
 									dataIndex : 'groupName',
 									width : 150,
@@ -131,9 +142,25 @@ Ext.onReady(function() {
 									hidden : true
 								}, {
 									text : '操作',
-									dataIndex : 'operation',
-									width : 150,
-									align : 'center'
+									menuDisabled : true,
+									sortable : false,
+									xtype : 'actioncolumn',
+									width : 60,
+									items : [{
+										iconCls : 'form_details',
+										tooltip : '用户详情',
+										handler : function(grid, rowIndex,
+												colIndex) {
+
+										}
+									}, '', {
+										iconCls : 'form_edit',
+										tooltip : '删除用户',
+										handler : function(grid, rowIndex,
+												colIndex) {
+
+										}
+									}]
 								}],
 						tbar : [{
 									xtype : 'button',

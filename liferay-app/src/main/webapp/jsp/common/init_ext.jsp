@@ -14,6 +14,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
+<script type="text/javascript">
+	var contextPath = "<%=basePath%>";
+</script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <!-- 自定义 -->
 <link  rel="stylesheet"  href="<%=basePath%>css/icon.css"/>

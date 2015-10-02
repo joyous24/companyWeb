@@ -1,41 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.liferay.admin.dao.UserDao">
-	<resultMap id="Uer-Result" type="com.liferay.admin.vo.UserVO">
-		<result property="userId" column="USER_ID" />
-		<result property="organizationId" column="ORGANIZATION_ID" />
-		<result property="userAccount" column="USER_ACCOUNT" />
-		<result property="userName" column="USER_NAME" />
-		<result property="userPassword" column="USER_PASSWORD" />
-		<result property="mobile" column="MOBILE" />
-		<result property="email" column="EMAIL" />
-		<result property="state" column="STATE" />
-		<result property="createTime" column="CREATE_TIME" />
-		<result property="loginTime" column="LOGIN_TIME" />
-		<result property="lastLoginTime" column="LAST_LOGIN_TIME" />
-		<result property="loginCout" column="LOGIN_COUNT" />
-		<result property="userDescription" column="USER_DESCRIPTION" />
+<mapper namespace="com.liferay.admin.dao.RolesDao">
+	<resultMap id="Roles-Result" type="com.liferay.admin.vo.RolesVO">
+		<result property="roleId" column="ROLE_ID" />
+		<result property="roleCode" column="ROLE_CODE" />
 		<result property="roleName" column="ROLE_NAME" />
-		<result property="organizationName" column="ORGANIZATION_NAME" />
-		<result property="groupName" column="GROUP_NAME" />
+		<result property="createTime" column="CREATE_TIME" />
+		<result property="roleDescription" column="ROLE_DESCRIPTION" />
+		
 	</resultMap>
 
-	<sql id="userWithCondition-SQL">
-		SELECT * FROM sys_users
+	<sql id="rolesWithCondition-SQL">
+		SELECT * FROM sys_roles
 	</sql>
 
-	<select id="getUserList" parameterType="com.liferay.admin.vo.UserVO" resultMap="Uer-Result">
-		/** User.getUserList**/
-		<include refid="userWithCondition-SQL"></include>
+	<select id="getRolesList" parameterType="com.liferay.admin.vo.RolesVO" resultMap="Roles-Result">
+		/** Roles.getRolesList**/
+		<include refid="rolesWithCondition-SQL"></include>
 		limit #{start},#{limit}
 
 	</select>
 
-	<select id="getUserCount" parameterType="com.liferay.admin.vo.UserVO" resultType="Integer">
-		/** User.getUserCount**/
+	<select id="getRolesCount" parameterType="com.liferay.admin.vo.RolesVO" resultType="Integer">
+		/** Roles.getRolesCount**/
 		SELECT count(*)
 		FROM (
-		<include refid="userWithCondition-SQL" />
+		<include refid="rolesWithCondition-SQL" />
 		)x
 	</select>
 

@@ -27,8 +27,6 @@ public class UserController {
 	@RequestMapping(value = "/userList.data", method = RequestMethod.POST)
 	public String userListDate(UserVO user, Model model) {
 		Integer totalCount = userService.getUserCount(user);
-		
-
 		List<UserVO> userList = userService.getUserList(user);
 		model.addAttribute("success",true);
 		model.addAttribute("totalCount",totalCount);
